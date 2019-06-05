@@ -16,17 +16,29 @@ Any new tables or records that we add into the database will be removed after yo
 2. Add 5 different people into the person database. 
     * Remember to not include the person_id because it should auto-increment.
 3. List all the people in the person table by height from tallest to shortest.
+<!-- select height from person order by height desc  -->
 4. List all the people in the person table by height from shortest to tallest.
+<!-- select height from person order by height  -->
 5. List all the people in the person table by age from oldest to youngest.
+<!-- select age from person order by age desc  -->
 6. List all the people in the person table older than age 20.
+<!-- select * from person where age > 20 -->
 7. List all the people in the person table that are exactly 18.
+<!-- select * from person where age = 18 -->
 8. List all the people in the person table that are less than 20 and older than 30.
+<!-- select * from person where age < 20 or age > 30 -->
 9. List all the people in the person table that are not 27 (Use not equals).
+<!-- select * from person where age != 27 -->
 10. List all the people in the person table where their favorite color is not red.
+<!-- select * from person where favorite_color != 'red' -->
 11. List all the people in the person table where their favorite color is not red and is not blue.
+<!-- select * from person where favorite_color != 'red' and  favorite_color != 'blue' -->
 12. List all the people in the person table where their favorite color is orange or green.
+<!-- select * from person where favorite_color = 'orange' or  favorite_color = 'green' -->
 13. List all the people in the person table where their favorite color is orange, green or blue (use IN).
+<!-- select * from person where favorite_color in ('orange', 'green', 'blue') -->
 14. List all the people in the person table where their favorite color is yellow or purple (use IN).
+<!-- select * from person where favorite_color in ('purple','yellow') -->
 
 ### Solution
 
@@ -181,13 +193,30 @@ SELECT * FROM person WHERE favorite_color IN ( 'yellow', 'purple' )
 ### Instructions
 
 1. Create a table called orders that records: person_id, product_name, product_price, quantity.
+<!-- create table orders(
+  person_id SERIAL,
+  product_name VARCHAR(250),
+  product_price INTEGER,
+  quantity INTEGER
+  ) -->
 2. Add 5 orders to the orders table.
     * Make orders for at least two different people.
     * person_id should be different for different people.
+    insert into orders (product_price, product_name, quantity)
+<!-- values (10, 'kale', 50),
+(5, 'bread', 4),
+(75, 'cake', 1),
+(12, 'pizza', 100),
+(3, 'cookies', 400),
+(2, 'milk', 75) -->
 3. Select all the records from the orders table.
+<!-- select * from orders -->
 4. Calculate the total number of products ordered.
+<!-- select sum(quantity) from orders -->
 5. Calculate the total order price.
+<!-- select sum(product_price * quantity) from orders -->
 6. Calculate the total order price by a single person_id.
+<!-- select sum(product_price * quantity) from orders where person_id = 2 -->
 
 ### Solution
 
@@ -263,10 +292,18 @@ SELECT SUM(product_price * quantity) FROM orders WHERE person_id = 0;
 ### Instructions
 
 1. Add 3 new artists to the artist table. ( It's already created )
+<!-- insert into artist (name)
+values ('devin'),
+('kevin'),
+('bob') -->
 2. Select 10 artists in reverse alphabetical order.
+<!-- select name from artist order by name desc limit 10 -->
 3. Select 5 artists in alphabetical order.
+<!-- select name from artist order by name asc limit 5 -->
 4. Select all artists that start with the word 'Black'.
+<!-- select name from artist where name like 'Black%' -->
 5. Select all artists that contain the word 'Black'.
+<!-- select name from artist where name like '%Black%' -->
 
 ### Solution 
 
@@ -331,11 +368,16 @@ SELECT * FROM artist WHERE name LIKE '%Black%';
 ### Instructions
 
 1. List all employee first and last names only that live in Calgary.
+<!-- select first_name, last_name, city from employee where city like 'Calgary' -->
 2. Find the birthdate for the youngest employee.
+<!-- select * from employee order by birth_date desc limit 1 -->
 3. Find the birthdate for the oldest employee.
+<!-- select * from employee order by birth_date asc limit 1 -->
 4. Find everyone that reports to Nancy Edwards (Use the ReportsTo column).
    * You will need to query the employee table to find the Id for Nancy Edwards
+<!-- select * from employee where reports_to = 2 -->
 5. Count how many people live in Lethbridge.
+<!-- select count(*) from employee where city like 'Lethbridge' -->
 
 ### Solution
 
@@ -400,13 +442,21 @@ SELECT COUNT(*) FROM employee WHERE city = 'Lethbridge';
 ### Instructions
 
 1. Count how many orders were made from the USA.
+<!-- select count(*) from invoice where billing_country like 'USA' -->
 2. Find the largest order total amount.
+<!-- select max(total) from invoice  -->
 3. Find the smallest order total amount.
+<!-- select min(total) from invoice  -->
 4. Find all orders bigger than $5.
+<!-- select total from invoice where total > 5 -->
 5. Count how many orders were smaller than $5.
+<!-- select total from invoice where total < 5 -->
 6. Count how many orders were in CA, TX, or AZ (use IN).
+<!-- select count(total) from invoice where billing_state IN ('CA','TX','AZ') -->
 7. Get the average total of the orders.
+<!-- select AVG(total) from invoice  -->
 8. Get the total sum of the orders.
+<!-- select sum(total) from invoice  -->
 
 ### Solution
 
